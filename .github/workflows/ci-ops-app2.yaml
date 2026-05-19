@@ -41,6 +41,7 @@ jobs:
           cache: 'maven'
 
       - name: Maven 테스트
+        working-directory: ./ops-app2
         run: mvn test -q
 
       - name: AWS OIDC 인증

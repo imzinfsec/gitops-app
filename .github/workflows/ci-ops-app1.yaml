@@ -12,7 +12,7 @@ env:
   APP_NAME: ops-app1
   ECR_REPOSITORY: ops-app1
   AWS_REGION: ap-northeast-2
-  GITHUB_ORG: superb-dev
+  GITHUB_ORG: imzinfsec
   CONFIG_REPO: ${{ github.repository_owner }}/gitops-config
   CONFIG_REPO_PATH: apps/ops-app1/overlays
 
@@ -41,6 +41,7 @@ jobs:
           cache: 'maven'
 
       - name: Maven 테스트
+        working-directory: ./ops-app1
         run: mvn test -q
 
       - name: AWS OIDC 인증
