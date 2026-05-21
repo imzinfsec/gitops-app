@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ops.app</groupId>
-	<artifactId>ops-app1-2</artifactId>
+	<artifactId>ops-app2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ops-app1-2</name>
+	<name>ops-app2</name>
 	<description/>
 	<url/>
 	<licenses>
@@ -54,6 +54,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+	    <!-- Micrometer Prometheus Registry -->
+	    <dependency>
+	        <groupId>io.micrometer</groupId>
+	        <artifactId>micrometer-registry-prometheus</artifactId>
+	        <scope>runtime</scope>
+	    </dependency>
 	</dependencies>
 
 	<build>

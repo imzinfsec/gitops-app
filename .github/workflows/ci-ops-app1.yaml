@@ -4,8 +4,8 @@ on:
   push:
     branches: [main]
     paths:
-      - 'ops-app1/**'
-      - '.github/workflows/ci-ops-app1.yaml'
+      - "ops-app1/**"
+      - ".github/workflows/ci-ops-app1.yaml"
 
 env:
   APP_NAME: ops-app1
@@ -31,9 +31,9 @@ jobs:
       - name: Java 17 설정
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: 'maven'
+          java-version: "17"
+          distribution: "temurin"
+          cache: "maven"
 
       - name: Maven 테스트
         working-directory: ./ops-app1
@@ -94,7 +94,7 @@ jobs:
           # update-config job 에서 registry 직접 조합
           FULL_URI="${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ needs.ci.outputs.image-repo-tag }}"
           echo "Updated: ${{ env.APP_NAME }}=${FULL_URI}"
-          cd config-repo/${{ env.CONFIG_REPO_PATH }}/dev
+          cd config-repo/${{ env.CONFIG_REPO_PATH }}/eks-dev
           kustomize edit set image ${{ env.APP_NAME }}=${FULL_URI}
 
       - name: Config Repo 커밋·Push

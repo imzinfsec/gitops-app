@@ -29,7 +29,9 @@ public class DataController {
                 "data", List.of(
                         Map.of("id", 1, "name", "item-A"),
                         Map.of("id", 2, "name", "item-B"),
-                        Map.of("id", 3, "name", "item-C")
+                        Map.of("id", 3, "name", "item-C"),
+                        Map.of("id", 4, "name", "item-D"),
+                        Map.of("id", 4, "name", "item-E")
                 )
         );
     }

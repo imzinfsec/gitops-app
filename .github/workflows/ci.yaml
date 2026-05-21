@@ -1,13 +1,19 @@
+# gitops-app/.github/workflows/ci.yml
 name: CI Pipeline
 
 on:
   push:
     branches: [main]
+    paths:
+      - 'ops-app/**'
+      - '.github/workflows/ci.yaml'
   pull_request:
     branches: [main]
+    paths:
+      - 'ops-app/**'
 
 env:
-  DOCKERHUB_IMAGE: your-dockerhub-username/gitops-app
+  DOCKERHUB_IMAGE: imzinfsec/gitops-app
   CONFIG_REPO: imzinfsec/gitops-config
   CONFIG_REPO_PATH: apps/gitops-app/overlays
 
@@ -32,6 +38,7 @@ jobs:
           cache: 'maven'
 
       - name: 테스트 실행
+        working-directory: ops-app
         run: mvn test -q
 
       - name: 이미지 태그 생성
@@ -45,6 +52,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Docker 빌드 및 Push
+        working-directory: ops-app
         env:
           IMAGE_TAG: ${{ steps.tag.outputs.tag }}
         run: |
@@ -78,7 +86,7 @@ jobs:
         run: |
           cd config-repo/${{ env.CONFIG_REPO_PATH }}/dev
           kustomize edit set image \
-            nginx=your-dockerhub-username/gitops-app:$IMAGE_TAG
+            gitops-app=imzinfsec/gitops-app:$IMAGE_TAG
 
       - name: Config Repo 커밋 및 Push
         env:
