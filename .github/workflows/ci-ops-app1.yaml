@@ -28,7 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Java 17 설정 v2-3
+      - name: Java 17 설정
         uses: actions/setup-java@v4
         with:
           java-version: "17"
@@ -42,7 +42,7 @@ jobs:
       - name: AWS OIDC 인증
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github-actions-cicd-basic-lab-role
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github-actions-terraform-role
           aws-region: ${{ env.AWS_REGION }}
 
       - name: ECR 로그인
